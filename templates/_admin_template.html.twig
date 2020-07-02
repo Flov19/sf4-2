@@ -1,11 +1,11 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    {# Menu qui sera affiché sur toutes les pages du Front-Office #}
-    <nav class="navbar has-background-grey-darker is-dark">
+    {# Menu qui sera affiché sur toutes les pages du Back-Office #}
+    <nav class="navbar has-background-primary is-dark">
         <div class="navbar-brand">
             <a class="navbar-item" href="{{ path('home') }}">
-                <p class="subtitle is-4 has-text-primary"><b>E-COMMERCE</b>
+                <i class="far fa-arrow-alt-circle-left"></i>
                 </p>
             </a>
 
@@ -18,13 +18,7 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a class="navbar-item" href="{{ path('admin_product_list') }}" >
-                        <span class="icon"><i class="fas fa-lock"></i></span>
-                        <span>Back-Office</span>
-                    </a>
-                {% endif %}
-                <a class="navbar-item" href="{{ path('product_list') }}">
+                <a class="navbar-item" href="{{ path('admin_product_list') }}">
                     Produits
                 </a>
             </div>
@@ -32,22 +26,13 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        {% if app.user %}
-                            <a class="button is-primary is-small" href="{{ path('account_profile') }}">
+                        <a class="button is-primary is-small" href="{{ path('account_profile') }}">
                                 <span class="icone"><i class="fas fa-user-circle"></i></span>
                                 <span><strong>{{ app.user.username }}</strong></span>
                             </a>
                             <a class="button is-light is-small" href="{{ path('app_logout')}}">
                                 <i class="fas fa-sign-out-alt"></i>
                             </a>
-                        {% else %}
-                            <a class="button is-primary is-small" href="{{ path('app_register') }}">
-                                <strong>Inscription</strong>
-                            </a>
-                            <a class="button is-light is-small" href="{{ path('app_login') }}">
-                                Connexion
-                            </a>
-                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Product
 {
@@ -36,6 +37,16 @@ class Product
      * @ORM\Column(type="date")
      */
     private $createdAt;
+
+    /**
+     * Méthode exécutée avant l'insertion en base
+     * @ORM\PrePersist()
+     */
+    public function prePersist(){
+        if ($this->createdAt ===null){
+            $this->createdAt = new \DateTime();
+        }
+    }
 
     public function getId(): ?int
     {
