@@ -14,18 +14,15 @@
             Nouveau produit
         </a>
 
-
-
-
         <table class="table is-fullwidth">
             <thead>
             <tr>
                 <th>#</th>
                 <th>Nom</th>
                 <th>Description</th>
+                <th>Catégorie</th>
                 <th>Prix</th>
                 <th>Création</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -38,6 +35,7 @@
                         </a>
                     </td>
                     <td>{{ product.description|slice(0, 25) }}</td>
+                    <td>{{ product.category.getName() }}</td>
                     <td class="has-text-right">
                         {{ product.priceFloat|number_format(2, '.', ' ') }} €
                     </td>

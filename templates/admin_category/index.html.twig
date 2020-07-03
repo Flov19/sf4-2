@@ -1,0 +1,40 @@
+{% extends '_admin_template.html.twig' %}
+
+{% block title %}
+    Liste des catégories
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <h1 class="title">Liste des catégories: </h1>
+
+        {% include "includes/flashes.html.twig" %}
+
+        <a href="{{ path('admin_category_add') }}" class="button is-success mb-4">
+            Nouvelle catégorie
+        </a>
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Catégorie</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in category_list %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <div class="buttons">
+                            <a href="{{ path('admin_category_edit', {id: category.id}) }}" class="button is-success">Modifier</a>
+                            <a href="{{ path('admin_category_delete', {id: category.id}) }}" class="button is-danger">Supprimer</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

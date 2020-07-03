@@ -1,0 +1,11 @@
+{% extends "_template.html.twig" %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <h1 class="title">Liste des catégories: {{ category_list|length }}</h1>
+
+        {% include 'includes/category_list.html.twig' with {category: category_list} %}
+    </div>
+{% endblock %}

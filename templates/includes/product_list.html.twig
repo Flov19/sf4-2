@@ -16,6 +16,8 @@
                                 </a>
                                 <small>{{ product.createdAt|date('d/m/Y') }}</small>
                                 <br>
+                                <small>{{ product.category.getName() }}</small>
+                                <br>
                                 {{ product.description|slice(0, 50) }}
                             </p>
                             <div class="tags has-addons">
