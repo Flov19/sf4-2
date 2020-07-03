@@ -1,11 +1,15 @@
 {{ form_start(product_form) }}
 
         {{ form_row(product_form.name, {
-            label: 'Nom'
+            label: 'Nom du produit:'
+        }) }}
+
+        {{ form_row(product_form.category, {
+            label: 'Catégorie du produit:'
         }) }}
 
         {{ form_row(product_form.description, {
-            label: 'Description'
+            label: 'Description du produit:'
         }) }}
 
         {{ form_row(product_form.price, {
