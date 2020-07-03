@@ -4,10 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class ProductFixtures extends Fixture
+class ProductFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -24,9 +25,26 @@ class ProductFixtures extends Fixture
                 ->setCreatedAt($faker->dateTimeBetween('-6 month'))
             ;
 
+            // Récupération aléatoire d'une catégorie par une référence
+            $categoryReference = 'category_' . $faker->numberBetween(0, 2);
+            $category = $this->getReference($categoryReference);
+
+            $product->setCategory($category);
+
             $manager->persist($product);
         }
 
         $manager->flush();
+    }
+
+    /**
+     * Liste des classes de fixtures qui doivent être chargé avant celle-ci
+     */
+
+    public function getDependencies()
+    {
+        return [
+            CategoryFixtures::class
+        ];
     }
 }
